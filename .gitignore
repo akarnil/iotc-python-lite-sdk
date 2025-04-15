@@ -2,7 +2,7 @@
 /.idea/
 /.vscode/
 
-# Python Virtual Environment while devloping etc.
+# Python Virtual Environment while developing etc.
 /.venv/
 
 # Build generated files
@@ -16,4 +16,5 @@
 
 # This will be generated when making an editable installs
 src/iotconnect_sdk_lite.egg-info/
+UNKNOWN.egg-info/
 

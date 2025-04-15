@@ -6,6 +6,14 @@ import random
 import sys
 import time
 from dataclasses import dataclass
+import os
+
+# Evaluate file path prefix when running in a snap
+path_prefix = ""
+snap_user_data = os.environ.get('SNAP_USER_DATA')
+if (snap_user_data != ""):
+    path_prefix += snap_user_data
+    path_prefix += "/"
 
 from avnet.iotconnect.sdk.lite import Client, DeviceConfig, C2dCommand, Callbacks, DeviceConfigError
 from avnet.iotconnect.sdk.lite import __version__ as SDK_VERSION
@@ -64,9 +72,9 @@ def on_disconnect(reason: str, disconnected_from_server: bool):
 
 try:
     device_config = DeviceConfig.from_iotc_device_config_json_file(
-        device_config_json_path="iotcDeviceConfig.json",
-        device_cert_path="device-cert.pem",
-        device_pkey_path="device-pkey.pem"
+        device_config_json_path=f"{path_prefix}iotcDeviceConfig.json",
+        device_cert_path=f"{path_prefix}device-cert.pem",
+        device_pkey_path=f"{path_prefix}device-pkey.pem"
     )
 
     c = Client(
