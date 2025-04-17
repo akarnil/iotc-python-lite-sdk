@@ -11,7 +11,7 @@ import os
 # Evaluate file path prefix when running in a snap
 path_prefix = ""
 snap_user_data = os.environ.get('SNAP_USER_DATA')
-if (snap_user_data != ""):
+if (snap_user_data != None):
     path_prefix += snap_user_data
     path_prefix += "/"
 
